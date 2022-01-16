@@ -9,7 +9,7 @@
 Documentation de l'API d'Epic Events et du fonctionnement de l'interface admin pour les 3 utilisateurs principaux : Gestion, Support et Vente ayant chacuns des autorisations et permissions spécifiques à leur rôle. Le but de l'API est de pouvoir gérer les évènements et les contrats et de faire le lien entre l'interface front-end et le back-end. 
 Test de l'API effectués via Postman.
 
-![Image text](https://i.ibb.co/LvjPCsS/Capture.png)
+![Image text](https://ibb.co/YjDRmxx)
 ## Technologies
 ***
 Bibliothèques utilisés :
@@ -30,7 +30,8 @@ $ cd P12_Epic_Events_Victor_Therache
 Activez l'environnement virtuel 
 ```
 $ pip install virtualenv
-$ .\env\Scripts\activate
+$ python -m venv venv
+$ venv\Scripts\activate.bat
 ```
 Puis: 
 ```
