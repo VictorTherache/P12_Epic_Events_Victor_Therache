@@ -31,12 +31,11 @@ Activez l'environnement virtuel
 ```
 $ pip install virtualenv
 $ python -m venv venv
-$ venv\Scripts\activate.bat
+$ venv\Scripts\activate
 ```
 Puis: 
 ```
 $ pip3 install -r requirements.txt 
-$ cd .\P12\
 $ python manage.py makemigrations
 $ python manage.py migrate
 $ python manage.py runserver
@@ -54,7 +53,6 @@ $ python manage.py runserver
 ***
 Pour utiliser l'interface graphique : 
 ```
-Sur Linux/Mac : 
 $ python manage.py runserver
 $ http://127.0.0.1:8000/epiceventadmin/login/
 ```
