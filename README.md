@@ -9,7 +9,7 @@
 Documentation de l'API d'Epic Events et du fonctionnement de l'interface admin pour les 3 utilisateurs principaux : Gestion, Support et Vente ayant chacuns des autorisations et permissions spécifiques à leur rôle. Le but de l'API est de pouvoir gérer les évènements et les contrats et de faire le lien entre l'interface front-end et le back-end. 
 Test de l'API effectués via Postman.
 
-![Image text](https://ibb.co/YjDRmxx)
+![Image text](https://i.ibb.co/ggvjNxx/epic-logo.png)
 ## Technologies
 ***
 Bibliothèques utilisés :
@@ -32,6 +32,15 @@ Activez l'environnement virtuel
 $ pip install virtualenv
 $ python -m venv venv
 $ venv\Scripts\activate
+```
+Créez une base de données Postgresql
+```
+$ Téléchargez postgresql (https://www.postgresql.org/download/)
+$ Ouvrez pgAdmin 4 et créez une base de données avec pour Nom : P12 et User : postgres
+$ Choisissez un mot de passe
+$ Ouvrez le fichier settings.py
+$ Remplacez le mot de passe de "DATABASES = {..." par celui que vous venez de définir
+$ Lancez le serveur
 ```
 Puis: 
 ```
