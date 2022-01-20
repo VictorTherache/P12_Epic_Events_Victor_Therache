@@ -1,10 +1,6 @@
 from rest_framework import serializers
-from django.contrib.auth import get_user_model
-from rest_framework.validators import UniqueValidator
-from django.contrib.auth.password_validation import validate_password
 
 from .models import Event, Contrat
-from Utilisateur.models import CustomUser, Client
 
 
 class EventSerializer(serializers.ModelSerializer):
@@ -12,23 +8,24 @@ class EventSerializer(serializers.ModelSerializer):
     Serializer de l'évènement pour afficher les données dans l'api
     """
 
-
     dateCreated = serializers.DateTimeField(allow_null=True)
-    dateUpdated = serializers.DateTimeField(allow_null=True)    
-    eventDate = serializers.DateTimeField(allow_null=True)    
+    dateUpdated = serializers.DateTimeField(allow_null=True)
+    eventDate = serializers.DateTimeField(allow_null=True)
     notes = serializers.CharField(allow_null=True, allow_blank=True)
+
     class Meta:
         model = Event
-        fields = ('id', 
+        fields = ('id',
                   'name',
                   'client',
                   'contrat',
-                  'dateCreated', 
-                  'dateUpdated', 
+                  'dateCreated',
+                  'dateUpdated',
                   'supportContact',
-                   'attendees', 
-                   'eventDate',
-                   'notes')
+                  'attendees',
+                  'eventDate',
+                  'notes')
+
 
 class ContratSerializer(serializers.ModelSerializer):
     """
@@ -41,11 +38,11 @@ class ContratSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Contrat
-        fields = ('id', 
-                  'client', 
-                  'dateCreated', 
+        fields = ('id',
+                  'client',
+                  'dateCreated',
                   'dateUpdated',
-                  'salesContact', 
-                  'status', 
-                  'amount', 
+                  'salesContact',
+                  'status',
+                  'amount',
                   'paymentDue')
