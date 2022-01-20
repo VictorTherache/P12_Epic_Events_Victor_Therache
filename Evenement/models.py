@@ -1,10 +1,7 @@
-from typing import AbstractSet
 from django.db import models
-from django.contrib.auth.models import AbstractUser
-from Utilisateur.models import *
-from django.utils import timezone
 import datetime
-# Create your models here.
+from Utilisateur.models import CustomUser, Client
+
 
 class Contrat(models.Model):
     """
@@ -19,11 +16,13 @@ class Contrat(models.Model):
     paymentDue = models.DateTimeField()
 
     def __str__(self):
-        return f"Contrat de {self.client.client.first_name} {self.client.client.last_name}"   
+        return (f"Contrat de {self.client.client.first_name} "
+                f"{self.client.client.last_name}")
 
     def save(self, *args, **kwargs):
         self.dateUpdated = datetime.datetime.now()
         return super().save(*args, **kwargs)
+
 
 class Event(models.Model):
     """
@@ -40,8 +39,8 @@ class Event(models.Model):
     notes = models.CharField(max_length=500, blank=True)
 
     def __str__(self):
-        return f"{self.name}"    
+        return f"{self.name}"
 
     def save(self, *args, **kwargs):
         self.dateUpdated = datetime.datetime.now()
-        return super().save(*args, **kwargs)        
+        return super().save(*args, **kwargs)

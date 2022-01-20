@@ -1,17 +1,24 @@
-from django.shortcuts import render
 from rest_framework import viewsets
-from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework import status
-from itertools import chain
 
-from .models import *
-from .serializers import *
-from .permissions import *
+from .models import Event, Contrat
+from .serializers import EventSerializer, ContratSerializer
+from .permissions import (
+                          HasContratCreatePermission,
+                          HasContratChangePermission,
+                          HasContratDeletePermission,
+                          HasEventCreatePermission,
+                          HasEventChangePermission,
+                          HasEventDeletePermission
+                        )
+
 
 class ContratViewSet(viewsets.ModelViewSet):
     """
-    Vue Django du contrat, définis les permissions, envois un message lors d'une supression et filtre le queryset
+    Vue Django du contrat, définis les permissions,
+    envois un message lors d'une supression et filtre le queryset
     """
     queryset = Contrat.objects.all()
     serializer_class = ContratSerializer
@@ -29,20 +36,19 @@ class ContratViewSet(viewsets.ModelViewSet):
         if self.action == 'partial_update':
             permission_classes = [IsAuthenticated, HasContratChangePermission]
         if self.action == 'destroy':
-            permission_classes = [IsAuthenticated, HasContratDeletePermission]            
+            permission_classes = [IsAuthenticated, HasContratDeletePermission]
         return [permission() for permission in permission_classes]
-        
+
     def destroy(self, request, *args, **kwargs):
         """
         Permet d'afficher un message lors d'une requete DELETE
-        """        
+        """
         instance = self.get_object()
         self.perform_destroy(instance)
         return Response({
-            "message":"Le contrat à bien était supprimé !"
+            "message": "Le contrat à bien était supprimé !"
         },
-        status=status.HTTP_200_OK)       
-
+            status=status.HTTP_200_OK)
 
     def get_queryset(self):
         """
@@ -60,10 +66,11 @@ class ContratViewSet(viewsets.ModelViewSet):
             return list_of_queries
         return queryset
 
-        
+
 class EventViewSet(viewsets.ModelViewSet):
     """
-    Vue Django de l'évènement, définis les permissions, envois un message lors d'une supression et filtre le queryset
+    Vue Django de l'évènement, définis les permissions,
+    envois un message lors d'une supression et filtre le queryset
     """
     queryset = Event.objects.all()
     serializer_class = EventSerializer
@@ -81,7 +88,7 @@ class EventViewSet(viewsets.ModelViewSet):
         if self.action == 'partial_update':
             permission_classes = [IsAuthenticated, HasEventChangePermission]
         if self.action == 'destroy':
-            permission_classes = [IsAuthenticated, HasEventDeletePermission]            
+            permission_classes = [IsAuthenticated, HasEventDeletePermission]
         return [permission() for permission in permission_classes]
 
     def destroy(self, request, *args, **kwargs):
@@ -91,6 +98,6 @@ class EventViewSet(viewsets.ModelViewSet):
         instance = self.get_object()
         self.perform_destroy(instance)
         return Response({
-            "message":"L'évènement à bien était supprimé !"
+            "message": "L'évènement à bien était supprimé !"
         },
-        status=status.HTTP_200_OK)               
+            status=status.HTTP_200_OK)
