@@ -33,7 +33,7 @@ $ pip install virtualenv
 $ python -m venv venv
 $ venv\Scripts\activate
 ```
-Créez une base de données Postgresql
+1er option : Créez une base de données Postgresql
 ```
 $ Téléchargez postgresql (https://www.postgresql.org/download/)
 $ Ouvrez pgAdmin 4 et créez une base de données avec pour Nom : P12 et User : postgres
@@ -41,6 +41,11 @@ $ Choisissez un mot de passe
 $ Ouvrez le fichier settings.py
 $ Remplacez le mot de passe de "DATABASES = {..." par celui que vous venez de définir
 $ Lancez le serveur
+```
+2eme option : Importez la base de donnée 
+```
+$ Créez une bdd avec pgadmin 4
+$ Importez la bdd avec le fichier Epic_Events_db.sql se trouvant à la racine du projet
 ```
 Puis: 
 ```
